@@ -21,7 +21,6 @@ body {
   background: linear-gradient(135deg, #fdf2f8, #f9a8d4, #ec4899);
   color: #5a1a3a;
   overflow: hidden;
-  position: relative;
 }
 
 .container {
@@ -90,25 +89,18 @@ button {
   gap: 2rem;
 }
 
-.gif-container {
-  width: 240px;
-  height: 240px;
-  border-radius: 50%;
+.gif-embed {
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(236, 72, 153, 0.4);
-}
-
-.gif-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="mainBox">
+<div class="container">
 
   <div id="questionStage">
     <h1>Hey... wanna grab coffee sometime? ☕💕</h1>
@@ -126,13 +118,19 @@ button {
   <div class="final" id="finalStage">
     <h1>You said YES! ☕💖</h1>
 
-    <div class="gif-container">
-      <!-- Cute hugging couple GIF (not cats) -->
-      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Cute happy couple hug">
+    <div class="gif-embed">
+      <iframe
+        src="https://giphy.com/embed/n3KZaXLYLuyNSHEvbm"
+        width="100%"
+        height="100%"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen>
+      </iframe>
     </div>
 
     <p class="tagline">
-      I promise great coffee and even better company 🥰
+      Can’t wait for our coffee date... it’s gonna be adorable ☕✨
     </p>
   </div>
 
