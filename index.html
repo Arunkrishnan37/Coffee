@@ -63,7 +63,6 @@
       background: linear-gradient(135deg, #ec4899, #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .buttons {
@@ -72,7 +71,6 @@
       gap: 1.2rem;
       margin: 1.5rem 0;
       flex-wrap: wrap;
-      z-index: 1;
     }
 
     button {
@@ -89,7 +87,6 @@
       background: linear-gradient(135deg, #ec4899, #f472b6);
       color: #fff;
       box-shadow: 0 12px 25px rgba(236, 72, 153, 0.4);
-      transform-origin: center;
     }
 
     #yesBtn:hover {
@@ -101,24 +98,17 @@
       background: linear-gradient(135deg, #fef3f2, #fee2e2);
       color: #be123c;
       border: 3px dashed #f87171;
-      font-weight: 600;
     }
 
     #noBtn:hover {
       transform: translateY(-2px) scale(1.02);
-      background: linear-gradient(135deg, #fee2e2, #fecaca);
     }
 
     .tagline {
       margin-top: 1rem;
       font-size: 1.15rem;
       color: #7c2d12;
-      text-align: center;
-      max-width: 95%;
-      margin-left: auto;
-      margin-right: auto;
       line-height: 1.5;
-      z-index: 1;
       font-weight: 500;
     }
 
@@ -128,14 +118,6 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
-    }
-
-    .final h1 {
-      font-size: 2.3rem;
-      background: linear-gradient(135deg, #ec4899, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .gif-container {
@@ -163,7 +145,6 @@
       line-height: 1.5;
     }
 
-    /* Fullscreen mode */
     .full-yes {
       max-width: none;
       width: 100%;
@@ -176,49 +157,41 @@
       gap: 3rem;
     }
 
-    .full-yes .buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .full-yes #yesBtn {
-      font-size: 1.6rem;
-      padding: 1.3rem 4rem;
-    }
-
-    .full-yes .tagline {
-      font-size: 1.4rem;
-      margin-top: 1.5rem;
-    }
-
     @media (max-width: 480px) {
       h1 { font-size: 1.9rem; }
       .container { padding: 2rem; }
-      .tagline { font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
+
   <div class="stars" id="stars"></div>
 
   <div class="container" id="mainBox">
-    <div class="question-stage" id="questionStage">
+    <div id="questionStage">
       <h1>Hey... wanna grab coffee sometime? ☕💕</h1>
-      
+
       <div class="buttons">
         <button id="yesBtn">Yes please! ☕</button>
         <button id="noBtn">No thanks</button>
       </div>
 
-      <p class="tagline" id="tagline">No pressure at all... just thought it'd be cute 🥺</p>
+      <p class="tagline" id="tagline">
+        No pressure at all... just thought it'd be cute 🥺
+      </p>
     </div>
 
     <div class="final" id="finalStage">
       <h1>OMG you said YES to a date! ☕💖</h1>
+
       <div class="gif-container">
-        <img src="https://media.tenor.com/images/26b2d729282cc90a0d6f2a7899a973e5/tenor.gif" alt="Super cute couple celebration" />
+        <!-- WORKING GIF -->
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute celebration gif" />
       </div>
-      <p class="final-note">Can't wait to see you smile over coffee. You're adorable for saying yes 🥰</p>
+
+      <p class="final-note">
+        Can't wait to see you smile over coffee. You're adorable for saying yes 🥰
+      </p>
     </div>
   </div>
 
@@ -231,28 +204,9 @@
     const tagline = document.getElementById("tagline");
     const starsContainer = document.getElementById("stars");
 
-    const noTexts = [
-      "No thanks 😊",
-      "Not dating rn 🫤", 
-      "Just friends only",
-      "Keeping it casual ✨",
-      "Coffee as friends?",
-      "Totally get it 💕"
-    ];
-
-    const cuteTaglines = [
-      "Totally cool if not! Just had to ask 🥰",
-      "I respect that 100% - you're still awesome ☕",
-      "Friends coffee still sounds fun tho? 😊",
-      "No worries at all! You're amazing either way 💖",
-      "Totally understand! Hugs instead? 🫂",
-      "You're the sweetest for even considering it 🥺"
-    ];
-
     let noClickCount = 0;
     let yesScale = 1;
 
-    // Twinkling stars
     function createStar() {
       const star = document.createElement("div");
       star.classList.add("star");
@@ -260,7 +214,6 @@
       star.style.top = Math.random() * 100 + "%";
       star.style.animationDelay = Math.random() * 3 + "s";
       starsContainer.appendChild(star);
-
       setTimeout(() => star.remove(), 6000);
     }
 
@@ -268,20 +221,13 @@
 
     noBtn.addEventListener("click", () => {
       noClickCount++;
-
-      const textIndex = Math.min(noClickCount - 1, noTexts.length - 1);
-      noBtn.textContent = noTexts[textIndex];
-
       yesScale += 0.18;
       yesBtn.style.transform = `scale(${yesScale})`;
+      tagline.textContent = "Totally okay! But I'd still love that coffee with you ☕💕";
 
-      const taglineIndex = Math.min(noClickCount - 1, cuteTaglines.length - 1);
-      tagline.textContent = cuteTaglines[taglineIndex];
-
-      if (noClickCount >= 6) {
-        mainBox.classList.add("full-yes");
+      if (noClickCount >= 5) {
         noBtn.style.display = "none";
-        tagline.textContent = "Your heart knows what it wants... click Yes? ✨";
+        tagline.textContent = "Your heart knows what it wants... maybe click Yes? ✨";
       }
     });
 
@@ -291,6 +237,6 @@
       mainBox.classList.add("full-yes");
     });
   </script>
+
 </body>
 </html>
-
